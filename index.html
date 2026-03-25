@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Андрей Барков — преподаватель IT с 15-летним опытом в автобизнесе и IT. Подготовка студентов к реальным задачам через Python, Linux, AI и системное администрирование.">
+    <meta name="keywords" content="преподаватель IT, курсы Python, Linux системный администратор, AI в образовании, Major Auto, БН-Моторс, KIA NISSAN BAIC">
+    <meta name="author" content="Андрей Барков">
+    <title>Андрей Барков | Преподаватель IT — от цеха до кафедры</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%230A0A0F'/%3E%3Ccircle cx='50' cy='50' r='40' stroke='%2300F0FF' stroke-width='4' fill='none'/%3E%3Ctext x='50' y='65' font-size='50' text-anchor='middle' fill='%2300F0FF' font-family='monospace'%3E%3C/text%3E%3C/svg%3E">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* ====== CSS ПЕРЕМЕННЫЕ ====== */
+        :root {
+            --bg-primary: #0A0A0F;
+            --bg-secondary: #111114;
+            --bg-card: #16161A;
+            --accent-cyan: #00F0FF;
+            --accent-blue: #0A66C2;
+            --text-primary: #FFFFFF;
+            --text-secondary: #B0B0B0;
+            --text-muted: #6A6A6A;
+            --border-color: rgba(0, 240, 255, 0.15);
+            --shadow-glow: 0 0 30px rgba(0, 240, 255, 0.2);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* ====== СБРОС И БАЗА ====== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Кастомный скроллбар */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--bg-secondary);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-blue);
+            border-radius: 5px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-cyan);
+        }
+
+        /* ====== ТИПОГРАФИКА ====== */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+        }
+
+        h2 {
+            font-size: clamp(1.8rem, 4vw, 2.5rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            line-height: 1.5;
+        }
+
+        p {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+        }
+
+        strong {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        code, kbd, samp {
+            font-family: 'Fira Code', monospace;
+            background: rgba(0, 240, 255, 0.1);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            border: 1px solid var(--border-color);
+        }
+
+        /* ====== КОНТЕЙНЕР ====== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        section {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        /* ====== HEADER ====== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 70px;
+            background: rgba(10, 10, 15, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 240, 255, 0.1);
+            transition: var(--transition);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-cyan));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-btn {
+            background: transparent;
+            border: 1px solid var(--accent-cyan);
+            padding: 8px 20px;
+            border-radius: 30px;
+            color: var(--accent-cyan);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ====== HERO SECTION ====== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 70px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 240, 255, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(10, 102, 194, 0.05) 0%, transparent 40%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+
+        .badge {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-family: 'Fira Code', monospace;
+            color: var(--accent-cyan);
+            transition: var(--transition);
+        }
+
+        .badge:hover {
+            background: rgba(0, 240, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .hero-text h1 {
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-cyan) 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 24px;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 32px;
+            max-width: 600px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 28px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            color: var(--bg-primary);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 240, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .profile-frame {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            box-shadow: var(--shadow-glow);
+            animation: pulse 3s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+            100% { box-shadow: 0 0 40px rgba(0, 240, 255, 0.5); }
+        }
+
+        .profile-frame img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            background: var(--bg-secondary);
+        }
+
+        .profile-placeholder {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--accent-cyan);
+            font-weight: 800;
+        }
+
+        /* ====== СТАНДАРТНЫЕ КАРТОЧКИ ====== */
+        .section-card {
+            background: var(--bg-card);
+            border-radius: 24px;
+            padding: 32px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+            height: 100%;
+        }
+
+        .section-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-color);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+        }
+
+        /* ====== TIMELINE (ВЕРТИКАЛЬНЫЙ) ====== */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            width: 2px;
+            background: linear-gradient(180deg, var(--accent-cyan), var(--accent-blue), var(--accent-cyan));
+            transform: translateX(-50%);
+            opacity: 0.3;
+        }
+
+        .timeline-item {
+            position: relative;
+            width: 50%;
+            padding: 0 40px 40px 0;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(odd) {
+            align-self: flex-start;
+            text-align: left;
+            padding: 0 0 40px 40px;
+            left: 50%;
+        }
+
+        .timeline-year {
+            position: absolute;
+            top: 0;
+            width: 80px;
+            height: 80px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: var(--accent-cyan);
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.2);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-year {
+            left: -40px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-year {
+            right: -40px;
+        }
+
+        .timeline-content {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: var(--transition);
+        }
+
+        .timeline-content:hover {
+            border-color: var(--border-color);
+            transform: translateY(-4px);
+        }
+
+        .timeline-title {
+            color: var(--accent-cyan);
+            font-size: 1.2rem;
+            margin-bottom: 4px;
+        }
+
+        .timeline-sub {
+            color: var(--accent-blue);
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-desc {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* ====== БЛОК "КОМПЕТЕНЦИИ (SOFT SKILLS)" ====== */
+        .skills-soft {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+        }
+
+        .soft-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 40px;
+        }
+
+        .soft-card {
+            background: var(--bg-card);
+            padding: 28px;
+            border-radius: 20px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .soft-card h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .soft-card ul {
+            list-style: none;
+        }
+
+        .soft-card li {
+            padding: 8px 0;
+            padding-left: 20px;
+            position: relative;
+            color: var(--text-secondary);
+            border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        .soft-card li:last-child {
+            border-bottom: none;
+        }
+
+        .soft-card li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        /* ====== БЛОК "ТЕХНИЧЕСКИЕ КОМПЕТЕНЦИИ (HARD SKILLS)" ====== */
+        .skills-hard {
+            padding: 60px 0;
+        }
+
+        .hard-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .hard-column {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: 20px;
+        }
+
+        .hard-column h3 {
+            color: var(--accent-cyan);
+            margin-bottom: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-family: 'Fira Code', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            transition: var(--transition);
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 240, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 240, 255, 0.1);
+        }
+
+        /* ====== БЛОК "ОПЫТ РАБОТЫ В АВТОБИЗНЕСЕ" ====== */
+        .auto-experience {
+            background: var(--bg-secondary);
+            padding: 60px 0;
+        }
+
+        .exp-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .exp-card {
+            background: var(--bg-card);
+            padding: 32px;
+            border-radius: 20px;
+            border-top: 4px solid var(--accent-cyan);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .exp-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(0, 240, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .exp-company {
+            color: var(--accent-cyan);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .exp-title {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .exp-period {
+            color: var(--accent-blue);
+            font-weight: 600;
+            margin-bottom: 16px;
+            display: inline-block;
+            background: rgba(10, 102, 194, 0.1);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+        }
+
+        .exp-desc {
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .exp-skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .exp-skill {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        /* ====== БЛОК "IT-ОБРАЗОВАНИЕ" ====== */
+        .education-section {
+            padding: 60px 0;
+        }
+
+        .edu-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 30px;
+            background: var(--bg-card);
+            border-radius: 16px;
+            overflow: hidden;
+        }
+
+        .edu-table th {
+            background: var(--accent-blue);
+            color: white;
+            padding: 16px 20px;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        .edu-table td {
+            padding: 16px 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-secondary);
+        }
+
+        .edu-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .edu-table tr:hover {
+            background: rgba(0, 240, 255, 0.05);
+        }
+
+        .edu-platform {
+            color: var(--accent-cyan);
+            font-weight: 500;
+        }
+
+        /* ====== БЛОК "AI В ОБРАЗОВАНИИ" ====== */
+        .ai-section {
+            background: linear-gradient(135deg, rgba(0, 240, 255, 0.05), rgba(10, 102, 194, 0.05));
+            padding: 60px 0;
+            border-radius: 32px;
+            margin: 40px 0;
+        }
+
+        .ai-list {
+            list-style: none;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ai-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: var(--bg-card);
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-cyan);
+        }
+
+        .ai-list i {
+            color: var(--accent-cyan);
+            font-size: 1.4rem;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .ai-list strong {
+            color: var(--accent-cyan);
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        /* ====== БЛОК "ПОЧЕМУ Я ВОЗВРАЩАЮСЬ В ПЕДАГОГИКУ" ====== */
+        .why-return {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px;
+            background: var(--bg-card);
+            border-radius: 24px;
+            border: 1px solid rgba(0, 240, 255, 0.1);
+            position: relative;
+        }
+
+        .why-return::before {
+            content: '"';
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            font-size: 4rem;
+            color: var(--accent-cyan);
+            opacity: 0.2;
+            font-family: Georgia, serif;
+        }
+
+        .why-return p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-secondary);
+            position: relative;
+            z-index: 1;
+        }
+
+        .why-return strong {
+            color: var(--accent-cyan);
+        }
+
+        /* ====== FOOTER ====== */
+        footer {
+            background: var(--bg-secondary);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(0, 240, 255, 0.1);
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: var(--accent-cyan);
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .contact-list {
+            list-style: none;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+        }
+
+        .contact-list i {
+            color: var(--accent-cyan);
+            width: 20px;
+            text-align: center;
+        }
+
+        .contact-list a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-cyan);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 16px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: rgba(0, 240, 255, 0.1);
+            border-radius: 50%;
+            color: var(--accent-cyan);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background: var(--accent-cyan);
+            color: var(--bg-primary);
+            transform: translateY(-4px);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-primary);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--accent-cyan);
+            box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-message {
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 10px;
+            display: none;
+        }
+
+        .form-message.success {
+            background: rgba(39, 201, 63, 0.1);
+            border: 1px solid rgba(39, 201, 63, 0.3);
+            color: #27C93F;
+        }
+
+        .form-message.error {
+            background: rgba(255, 95, 86, 0.1);
+            border: 1px solid rgba(255, 95, 86, 0.3);
+            color: #FF5F56;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* ====== АДАПТИВНОСТЬ ====== */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .hero-badges {
+                justify-content: center;
+            }
+            
+            .hero-visual {
+                order: -1;
+            }
+            
+            .soft-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hard-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .exp-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 80px;
+                padding-right: 0;
+                text-align: left;
+            }
+            
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                padding-left: 80px;
+                text-align: left;
+            }
+            
+            .timeline-year {
+                left: 0 !important;
+                right: auto !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background: var(--bg-primary);
+                flex-direction: column;
+                padding: 20px;
+                gap: 16px;
+                border-bottom: 1px solid var(--border-color);
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero {
+                padding-top: 100px;
+                min-height: auto;
+                padding-bottom: 60px;
+            }
+            
+            .profile-frame {
+                width: 200px;
+                height: 200px;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .edu-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .timeline-item {
+                padding-left: 60px;
+            }
+            
+            .timeline-year {
+                width: 60px;
+                height: 60px;
+                font-size: 1rem;
+            }
+        }
+
+        /* ====== АНИМАЦИИ ====== */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ====== UTILITY ====== */
+        .text-center { text-align: center; }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .mb-0 { margin-bottom: 0; }
+        .mt-4 { margin-top: 1.5rem; }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header id="header">
+    <div class="nav-container">
+        <a href="#" class="logo">Андрей <span>Барков</span></a>
+        
+        <nav>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#path">О пути</a></li>
+                <li><a href="#skills">Компетенции</a></li>
+                <li><a href="#auto-experience">Авто-опыт</a></li>
+                <li><a href="#it-education">IT-образование</a></li>
+                <li><a href="#contact">Контакты</a></li>
+                <li><a href="#" class="nav-btn" onclick="downloadResume()">Скачать резюме</a></li>
+            </ul>
+        </nav>
+        
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Меню">
+            <i class="fas fa-bars"></i>
+        </button>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <div class="hero-badges">
+                    <span class="badge">#ПедагогПрофОбучения</span>
+                    <span class="badge">#Python & Data Science</span>
+                    <span class="badge">#AIвОбразовании</span>
+                    <span class="badge">#LinuxAdmin</span>
+                </div>
+                <h1>ОТ ЦЕХА ДО КАФЕДРЫ</h1>
+                <p class="hero-desc">
+                    15 лет в IT и автобизнесе. Сегодня передаю знания студентам, сочетая 
+                    <strong>педагогическое образование</strong>, 
+                    <strong>практический опыт</strong> и 
+                    <strong>современные технологии</strong> (Python, AI, Linux).
+                </p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary" onclick="downloadResume()">
+                        <i class="fas fa-file-pdf"></i> Скачать полное резюме
+                    </a>
+                    <a href="#courses" class="btn btn-secondary">
+                        <i class="fas fa-arrow-right"></i> Узнать о курсах
+                    </a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="profile-frame">
+                    <div class="profile-placeholder">AB</div>
+                    <!-- В реальном проекте: <img src="photo.jpg" alt="Андрей Барков"> -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 3: Уникальный путь -->
+    <section id="path">
+        <div class="container">
+            <h2>Мой путь: от педагогического института к преподавателю IT</h2>
+            <p class="section-subtitle">
+                Каждый этап карьеры добавил компетенции, которые сегодня делают мои уроки живыми, практичными и востребованными
+            </p>
+            
+            <div class="timeline">
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2004-2008</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Пединститут</div>
+                        <div class="timeline-sub">Брянский государственный университет</div>
+                        <div class="timeline-desc">
+                            Диплом педагога профессионального обучения. Понимание методики, психологии, возрастных особенностей студентов.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2008</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Инженер-программист</div>
+                        <div class="timeline-sub">ОАО "МАК Вымпел"</div>
+                        <div class="timeline-desc">
+                            Системное мышление, C++, работа с защищенными системами. Фундамент IT-грамотности.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2008-2013</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Сервис-инженер</div>
+                        <div class="timeline-sub">ООО "Техсервис" / "БН-Моторс"</div>
+                        <div class="timeline-desc">
+                            Создание IT-отдела с нуля. Linux, сети, администрирование. Наставничество стажеров.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2013-2021</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Мастер-приемщик</div>
+                        <div class="timeline-sub">ООО "БН-Моторс" (KIA, NISSAN)</div>
+                        <div class="timeline-desc">
+                            Психология общения, работа с возражениями, управление конфликтами. Курирование студентов техникумов.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2021-н.в.</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Менеджер отдела запчастей</div>
+                        <div class="timeline-sub">Major Auto (BAIC, KAIYI)</div>
+                        <div class="timeline-desc">
+                            Управление, CRM, аналитика. Навыки, которые сегодня передаю студентам.
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="timeline-item animate-on-scroll">
+                    <div class="timeline-year">2024-н.в.</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">Преподаватель IT</div>
+                        <div class="timeline-sub">СПО / Учебные центры</div>
+                        <div class="timeline-desc">
+                            Объединяю педагогику, IT-знания и бизнес-опыт. Использую AI для создания уроков.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 4: Компетенции (Soft Skills) -->
+    <section id="skills" class="skills-soft">
+        <div class="container">
+            <h2>Что я принес из автобизнеса в преподавание</h2>
+            <p class="section-subtitle">
+                10 лет в официальных дилерских центрах KIA, NISSAN, BAIC, KAIYI и мультибренде
+            </p>
+            
+            <div class="soft-grid">
+                <div class="soft-card animate-on-scroll">
+                    <h3><i class="fas fa-comments"></i> Психология и коммуникация</h3>
+                    <ul>
+                        <li>Разрешение конфликтных ситуаций (опыт мастером-приемщиком)</li>
+                        <li>Работа с возражениями и сложными клиентами</li>
+                        <li>Эмоциональный интеллект в общении со студентами</li>
+                        <li>Навыки убеждения и мотивации</li>
+                    </ul>
+                </div>
+                
+                <div class="soft-card animate-on-scroll">
+                    <h3><i class="fas fa-tasks"></i> Управление и организация</h3>
+                    <ul>
+                        <li>Организация работы отдела с нуля</li>
+                        <li>Ведение складского учета и отчетности</li>
+                        <li>Управление командой (Major Auto)</li>
+                        <li>Наставничество стажеров техникумов</li>
+                    </ul>
+                </div>
+                
+                <div class="soft-card animate-on-scroll">
+                    <h3><i class="fas fa-cogs"></i> Профессиональные софт-скиллы</h3>
+                    <ul>
+                        <li>Работа в CRM: Major Studio, 1С</li>
+                        <li>Каталоги запчастей (KIA, NISSAN, BAIC, KAIYI)</li>
+                        <li>Порталы марок (ETKA, Nissan FAST, и др.)</li>
+                        <li>Аналитика продаж и складских остатков</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 5: Технические компетенции (Hard Skills) -->
+    <section id="skills-hard" class="skills-hard">
+        <div class="container">
+            <h2>Что я преподаю студентам</h2>
+            <p class="section-subtitle">
+                Актуальные IT-навыки, подкрепленные реальным опытом
+            </p>
+            
+            <div class="hard-grid">
+                <div class="hard-column animate-on-scroll">
+                    <h3><i class="fas fa-code"></i> Программирование и анализ данных</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python (Pandas, NumPy)</span>
+                        <span class="skill-tag">Matplotlib, Seaborn</span>
+                        <span class="skill-tag">BeautifulSoup, Scrapy</span>
+                        <span class="skill-tag">Анализ данных (EDA, статистика)</span>
+                        <span class="skill-tag">Google Colab, Jupyter</span>
+                        <span class="skill-tag">PyCharm, VS Code</span>
+                        <span class="skill-tag">SQL, PostgreSQL</span>
+                        <span class="skill-tag">Git, GitHub</span>
+                    </div>
+                </div>
+                
+                <div class="hard-column animate-on-scroll">
+                    <h3><i class="fas fa-server"></i> Системное администрирование</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux (Ubuntu) — установка, настройка</span>
+                        <span class="skill-tag">Windows Server (AD, DNS, DHCP)</span>
+                        <span class="skill-tag">GPO, WSUS, DFS</span>
+                        <span class="skill-tag">Сети: TCP/IP, LAN, VPN, VLAN</span>
+                        <span class="skill-tag">Docker, Kubernetes (базовый)</span>
+                        <span class="skill-tag">Zabbix, Grafana</span>
+                        <span class="skill-tag">Ansible</span>
+                        <span class="skill-tag">TeamCity</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 6: Опыт работы в автобизнесе (подробно) -->
+    <section id="auto-experience" class="auto-experience">
+        <div class="container">
+            <h2>10 лет в официальных дилерских центрах</h2>
+            <p class="section-subtitle">
+                KIA | NISSAN | BAIC | KAIYI | Мультибренд
+            </p>
+            
+            <div class="exp-grid">
+                <div class="exp-card animate-on-scroll">
+                    <div class="exp-company">ООО "БН-Моторс" (Брянск)</div>
+                    <h3 class="exp-title">Мастер-приемщик слесарного цеха</h3>
+                    <div class="exp-period">Март 2013 – Февраль 2021 (8 лет)</div>
+                    <div class="exp-desc">
+                        Дилерские марки: KIA, NISSAN
+                    </div>
+                    <div class="exp-skills">
+                        <span class="exp-skill">Прием/выдача авто</span>
+                        <span class="exp-skill">Консультирование клиентов</span>
+                        <span class="exp-skill">CRM 1С</span>
+                        <span class="exp-skill">Каталоги KIA/NISSAN</span>
+                        <span class="exp-skill">Подбор по VIN</span>
+                        <span class="exp-skill">Разрешение конфликтов</span>
+                        <span class="exp-skill">Курирование студентов</span>
+                        <span class="exp-skill">Увеличение продаж</span>
+                    </div>
+                </div>
+                
+                <div class="exp-card animate-on-scroll">
+                    <div class="exp-company">Major Auto (Москва)</div>
+                    <h3 class="exp-title">Менеджер отдела запчастей</h3>
+                    <div class="exp-period">Февраль 2021 – настоящее время</div>
+                    <div class="exp-desc">
+                        Дилерские марки: BAIC, KAIYI, мультибренд
+                    </div>
+                    <div class="exp-skills">
+                        <span class="exp-skill">CRM Major Studio</span>
+                        <span class="exp-skill">Управление складом</span>
+                        <span class="exp-skill">Мультибрендовые каталоги</span>
+                        <span class="exp-skill">Аналитика продаж</span>
+                        <span class="exp-skill">Обучение сотрудников</span>
+                        <span class="exp-skill">Управление командой</span>
+                        <span class="exp-skill">Мотивация</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 7: IT-образование и повышение квалификации -->
+    <section id="it-education" class="education-section">
+        <div class="container">
+            <h2>Постоянное развитие: IT-компетенции</h2>
+            <p class="section-subtitle">
+                Полученные параллельно с работой в автобизнесе
+            </p>
+            
+            <table class="edu-table animate-on-scroll">
+                <thead>
+                    <tr>
+                        <th>Год</th>
+                        <th>Курс / Программа</th>
+                        <th>Организация</th>
+                        <th>Навыки</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2023</td>
+                        <td>Поколение Python: продвинутый</td>
+                        <td class="edu-platform">Stepik</td>
+                        <td>Python, pandas, numpy, matplotlib, анализ данных</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>Дата-аналитик: старт карьеры</td>
+                        <td class="edu-platform">Томский госуниверситет</td>
+                        <td>EDA, статистика, Google Colab, Anaconda</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>Поколение Python: начинающие</td>
+                        <td class="edu-platform">Stepik</td>
+                        <td>Основы программирования на Python</td>
+                    </tr>
+                    <tr>
+                        <td>2022</td>
+                        <td>Docker, Kubernetes, Git, Linux</td>
+                        <td class="edu-platform">Самообразование</td>
+                        <td>Контейнеризация, оркестрация, системы контроля версий</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <div class="mt-4 text-center">
+                <p><strong>Дополнительно:</strong></p>
+                <p style="color: var(--text-secondary); max-width: 800px; margin: 1rem auto;">
+                    Linux: установка, настройка, администрирование (NFS, Samba, Apache, Nginx, iptables) •
+                    Windows Server: AD, DNS, DHCP, GPO, WSUS, DFS •
+                    Сети: построение ЛВС, настройка маршрутизаторов, Wi-Fi, VoIP •
+                    Виртуализация: MS Hyper-V •
+                    Мониторинг: Zabbix, Grafana
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 8: AI в обучении -->
+    <section id="ai-education">
+        <div class="container">
+            <div class="ai-section animate-on-scroll">
+                <h2 class="text-center mb-0">Как я использую <span class="text-gradient">нейросети</span> в педагогике</h2>
+                <p class="section-subtitle">
+                    Современный преподаватель усиливает себя AI
+                </p>
+                
+                <ul class="ai-list">
+                    <li>
+                        <i class="fas fa-robot"></i>
+                        <div>
+                            <strong>Подготовка контента:</strong> 
+                            Генерирую уникальные планы уроков, практические задания по Python и администрированию, тесты для проверки знаний за секунды (ChatGPT, Claude, Grok).
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-chalkboard-teacher"></i>
+                        <div>
+                            <strong>Визуализация:</strong> 
+                            Создаю схемы сетей, архитектур приложений и наглядные материалы через Midjourney и DALL-E, чтобы сложные концепции (Docker, Kubernetes) становились понятными.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-code"></i>
+                        <div>
+                            <strong>Автоматизация проверки:</strong> 
+                            Использую AI для анализа кода студентов (Code Review) и автоматической проверки домашних заданий, высвобождая время на индивидуальное общение.
+                        </div>
+                    </li>
+                    <li>
+                        <i class="fas fa-lightbulb"></i>
+                        <div>
+                            <strong>Интерактивные материалы:</strong> 
+                            Разрабатываю интерактивные туториалы по Python, Data Science и системному администрированию с использованием AI-инструментов.
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 9: Почему я возвращаюсь в педагогику -->
+    <section id="why-return">
+        <div class="container">
+            <div class="why-return animate-on-scroll">
+                <h2>Возвращение к истокам: от студента пединститута к преподавателю</h2>
+                <p>
+                    Я начинал как студент Брянского государственного университета, получил диплом педагога профессионального обучения. 
+                    Но путь в профессию оказался не прямым: я ушел в IT-индустрию, затем в автобизнес, где прошел путь от сервис-инженера до руководителя отдела в крупнейшем автохолдинге.
+                </p>
+                <p>
+                    <strong>Сегодня я возвращаюсь к педагогике — с 15-летним практическим опытом,</strong> с пониманием реальных задач бизнеса, с навыками работы с людьми (конфликтология, управление, наставничество) и с обновленными IT-компетенциями.
+                </p>
+                <p>
+                    Я знаю, <strong>чему учить студентов</strong>, чтобы они были востребованы на рынке труда. И я умею это делать — потому что учился этому в пединституте, а потом подтверждал практикой каждый день.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 10: Footer + Контакты -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Контакты</h4>
+                    <ul class="contact-list">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+79529691350">+7 (952) 969-13-50</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:barkomount@gmail.com">barkomount@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Москва (готов к командировкам)</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Социальные сети</h4>
+                    <div class="social-links">
+                        <a href="https://t.me/barkov_ai" target="_blank" aria-label="Telegram">
+                            <i class="fab fa-telegram"></i>
+                        </a>
+                        <a href="https://linkedin.com/in/andrey-barkov" target="_blank" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="https://github.com/barkomount" target="_blank" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Быстрая связь</h4>
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Ваше имя" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="contact" placeholder="Email / Телефон" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Интересует курс/сотрудничество..." rows="3" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Отправить заявку
+                        </button>
+                        <div class="form-message" id="formMessage"></div>
+                    </form>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>© 2025 Андрей Барков. Преподаватель профессионального обучения.</p>
+                <p class="mt-4" style="font-size: 0.85rem; color: var(--text-muted);">
+                    Сайт выполнен в стиле <strong>High-Tech Minimalism</strong> с акцентом <span style="color: var(--accent-cyan);">#00F0FF</span>
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // ====== МОБИЛЬНОЕ МЕНЮ ======
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        if (mobileMenuBtn && navLinks) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                const icon = mobileMenuBtn.querySelector('i');
+                if (navLinks.classList.contains('active')) {
+                    icon.className = 'fas fa-times';
+                } else {
+                    icon.className = 'fas fa-bars';
+                }
+            });
+            
+            // Закрытие меню при клике на ссылку
+            navLinks.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                    mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                });
+            });
+        }
+
+        // ====== СКАЧИВАНИЕ РЕЗЮМЕ ======
+        function downloadResume() {
+            // В реальном проекте: window.location.href = 'assets/resume.pdf';
+            alert('Для получения полного резюме свяжитесь со мной по контактам выше или нажмите "Отправить заявку"');
+        }
+
+        // ====== ОБРАБОТКА ФОРМЫ ======
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                // Показываем загрузку
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+                
+                // Собираем данные
+                const formData = new FormData(this);
+                const data = {
+                    name: formData.get('name'),
+                    email: formData.get('contact'),
+                    message: formData.get('message')
+                };
+                
+                try {
+                    // Имитация отправки (замените на реальный endpoint)
+                    await new Promise(resolve => setTimeout(resolve, 1500));
+                    
+                    // Успех
+                    formMessage.textContent = '✅ Спасибо! Ваша заявка отправлена. Я свяжусь с вами в течение 24 часов.';
+                    formMessage.className = 'form-message success';
+                    formMessage.style.display = 'block';
+                    
+                    // Очистка формы
+                    this.reset();
+                    
+                    // Скрытие сообщения через 5 сек
+                    setTimeout(() => {
+                        formMessage.style.display = 'none';
+                    }, 5000);
+                    
+                } catch (error) {
+                    // Ошибка
+                    formMessage.textContent = '❌ Произошла ошибка. Пожалуйста, отправьте email напрямую: barkomount@gmail.com';
+                    formMessage.className = 'form-message error';
+                    formMessage.style.display = 'block';
+                } finally {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalText;
+                }
+            });
+        }
+
+        // ====== ПЛАВНЫЙ СКРОЛЛ ======
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerOffset = 80;
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Закрытие мобильного меню
+                    if (window.innerWidth <= 768) {
+                        navLinks.classList.remove('active');
+                        mobileMenuBtn.querySelector('i').className = 'fas fa-bars';
+                    }
+                }
+            });
+        });
+
+        // ====== АНИМАЦИЯ ПРИ СКРОЛЛЕ ======
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        // ====== HEADER SCROLL EFFECT ======
+        let lastScroll = 0;
+        const header = document.getElementById('header');
+        
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                header.style.background = 'rgba(10, 10, 15, 0.98)';
+                header.style.boxShadow = '0 4px 30px rgba(0, 0, 0, 0.3)';
+            } else {
+                header.style.background = 'rgba(10, 10, 15, 0.95)';
+                header.style.boxShadow = 'none';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // ====== КОПИРОВАНИЕ ТЕГОВ ======
+        document.querySelectorAll('.badge, .skill-tag, .exp-skill').forEach(tag => {
+            tag.style.cursor = 'pointer';
+            tag.title = 'Кликните для копирования';
+            
+            tag.addEventListener('click', function() {
+                const text = this.textContent;
+                
+                navigator.clipboard.writeText(text).then(() => {
+                    const originalBg = this.style.background;
+                    const originalColor = this.style.color;
+                    const originalBorder = this.style.borderColor;
+                    
+                    this.textContent = '✓ Скопировано!';
+                    this.style.background = 'rgba(39, 201, 63, 0.2)';
+                    this.style.color = '#27C93F';
+                    this.style.borderColor = 'rgba(39, 201, 63, 0.3)';
+                    
+                    setTimeout(() => {
+                        this.textContent = text;
+                        this.style.background = originalBg;
+                        this.style.color = originalColor;
+                        this.style.borderColor = originalBorder;
+                    }, 1500);
+                });
+            });
+        });
+
+        // ====== EASTER EGG ======
+        console.log(`
+%c██╗  ██╗ ██████╗ ██╗   ██╗███████╗███████╗███████╗██╗███╗   ██╗
+%c██║  ██║██╔═══██╗██║   ██║██╔════╝██╔════╝██╔════╝██║████╗  ██║
+%c███████║██║   ██║██║   ██║███████╗█████╗  █████╗  ██║██╔██╗ ██║
+%c██╔══██║██║   ██║╚██╗ ██╔╝╚════██║██╔══╝  ██╔══╝  ██║██║╚██╗██║
+%c██║  ██║╚██████╔╝ ╚████╔╝ ███████║██║     ██║     ██║██║ ╚████║
+%c╚═╝  ╚═╝ ╚═════╝   ╚═══╝  ╚══════╝╚═╝     ╚═╝     ╚═╝╚═╝  ╚═══╝
+%c   
+%c🎓 Преподаватель IT с 15-летним опытом в автобизнесе
+%c🔧 От сервис-инженера до менеджера Major Auto
+%c🤖 Эксперт по AI в образовании | Python | Linux
+%c📚 Специализация: профессиональное обучение (СПО)
+
+%cСайт: High-Tech Minimalism / Electric Cyan
+`, 
+'color: #00F0FF; font-weight: bold; font-size: 14px;',
+'color: #00F0FF; font-weight: bold; font-size: 12px;',
+'color: #00F0FF; font-weight: bold; font-size: 12px;',
+'color: #00F0FF; font-weight: bold; font-size: 12px;',
+'color: #00F0FF; font-weight: bold; font-size: 12px;',
+'color: #00F0FF; font-weight: bold; font-size: 14px;',
+'color: #8A8A8A; font-size: 11px;',
+'color: #00F0FF; font-size: 11px; font-weight: bold;',
+'color: #8A8A8A; font-size: 11px;',
+'color: #0A66C2; font-size: 11px; font-weight: bold;'
+);
+    </script>
+</body>
+</html>
